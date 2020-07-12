@@ -1,0 +1,1 @@
+bash -c "yes | task $1 delete"

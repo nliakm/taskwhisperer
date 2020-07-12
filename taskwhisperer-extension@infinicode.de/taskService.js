@@ -254,6 +254,32 @@ var TaskService = class TaskService {
         });
     }
 
+    deleteTask(taskID, cb) {
+        if (!taskID) {
+            return;
+        }
+        let shellProc = Gio.Subprocess.new(['/bin/sh', EXTENSIONDIR + '/extra/delete.sh', taskID.toString()], Gio.SubprocessFlags.STDOUT_PIPE + Gio.SubprocessFlags.STDERR_MERGE);
+        shellProc.wait_async(null, function (obj, result) {
+            let shellProcExited = true;
+            shellProc.wait_finish(result);
+            let buffer = "";
+            let stream;
+
+            function readCB(obj, result) {
+                let bytes = stream.read_bytes_finish(result);
+                if (!bytes.get_size()) {
+                    cb();
+                } else {
+                    buffer = buffer + imports.byteArray.toString(bytes.get_data());
+                    stream.read_bytes_async(8192, 1, null, readCB);
+                }
+            }
+
+            stream = shellProc.get_stdout_pipe();
+            stream.read_bytes_async(8192, 1, null, readCB);
+        });
+    }    
+
     setTaskDone(taskID, cb) {
         if (!taskID) {
             return;

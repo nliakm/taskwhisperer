@@ -90,6 +90,12 @@ var ModifyTaskDialog = GObject.registerClass({
             can_focus  : true
         });
 
+        this._projectInputBox = new St.Entry({
+            style_class: 'modificationInputBox',
+            text       : "project:'" + task.Project + "'",
+            can_focus  : true
+        });        
+
         if(task.Due)
         {
             let displayDateFormat = Shell.util_translate_time_string(N_("%H:%M %A %d. %b. %Y"));
@@ -103,11 +109,17 @@ var ModifyTaskDialog = GObject.registerClass({
             this._descriptionInputBox.text = "due:'" + formattedText + "' " + this._descriptionInputBox.text;
         }
 
+        // Activate description input box
         this._descriptionInputBox.clutter_text.connect('activate', () => 
             this._onModifyTaskButton.call(this, dateFormat));
-
         this._messageBox.add(this._descriptionInputBox, {expand: true});
         this.setInitialKeyFocus(this._descriptionInputBox);
+
+        // Activate project input box
+        this._projectInputBox.clutter_text.connect('activate', () => 
+            this._onModifyTaskButton.call(this, dateFormat));
+        this._messageBox.add(this._projectInputBox, {expand: true});
+        this.setInitialKeyFocus(this._projectInputBox);        
 
         this._errorMessageLabel = new St.Label({
             style_class: 'prompt-dialog-error-label',
@@ -231,6 +243,13 @@ var CreateTaskDialog = GObject.registerClass({
             can_focus  : true
         });
 
+        this._projectInputBox = new St.Entry({
+            style_class: 'projectInputBox',
+            text       : "",
+            hint_text  : _("Enter Project"),
+            can_focus  : true
+        });
+        
         this._additionalArgumentsInputBox = new St.Entry({
             style_class: 'additionalArgumentsInputBox',
             text       : "",
@@ -255,12 +274,17 @@ var CreateTaskDialog = GObject.registerClass({
             this._onAddTaskButton.call(this, dateFormat)
         );
 
+        this._projectInputBox.clutter_text.connect('activate', () =>
+            this._onAddTaskButton.call(this, dateFormat)
+        );        
+
         this._additionalArgumentsInputBox.clutter_text.connect('activate', () =>
             this._onAddTaskButton.call(this, dateFormat)
         );
 
         this._messageBox.add(this._descriptionInputBox, {expand: true});
         this._messageBox.add(this._dueDateInputBox, {expand: true});
+        this._messageBox.add(this._projectInputBox, {expand: true});
         this._messageBox.add(this._additionalArgumentsInputBox, {expand: true});
         this._messageBox.add(this._errorMessageLabel);
 
@@ -300,6 +324,11 @@ var CreateTaskDialog = GObject.registerClass({
         {
             argumentsString = argumentsString + " due:'" + this._dueDateInputBox.text + "'";
         }
+
+        if(this._projectInputBox.text && this._projectInputBox.text != this._projectInputBox.hint_text)
+        {
+            argumentsString = argumentsString + " project:'" + this._projectInputBox.text + "'";
+        }        
 
         if(this._additionalArgumentsInputBox.text && this._additionalArgumentsInputBox.text != this._additionalArgumentsInputBox.hint_text)
         {

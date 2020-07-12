@@ -336,6 +336,12 @@ const ScrollBox = class extends PopupMenu.PopupMenuBase {
             buttonBox.add(_markDoneButton, {expand: true, x_fill: true, x_align: St.Align.MIDDLE});
             buttonBox.add(_modifyButton, {expand: true, x_fill: true, x_align: St.Align.MIDDLE});
         }
+        // Add delete button
+        let _deleteButton = UiHelper.createButton(_("Delete Task"), "deleteTask", "deleteTask", () =>
+            this.emit('deleteTaskConnect', task)
+        );
+
+        buttonBox.add(_deleteButton, {expand: true, x_fill: true, x_align: St.Align.MIDDLE});        
 
         if (ExtensionUtils.versionCheck(['3.8'], Config.PACKAGE_VERSION)) {
             _buttonMenu.add_actor(buttonBox);
@@ -765,6 +771,12 @@ let TaskWhispererMenuButton = GObject.registerClass(class TaskWhispererMenuButto
                     this.taskBox.reloadTaskData(true, true)
                 );
             }
+        });
+
+        this.taskBox.connect("deleteTaskConnect", (that, task) => {
+            this.service.deleteTask(task.UUID, () => 
+                this.taskBox.reloadTaskData(true)
+            );
         });
 
         this.taskBox.connect("setDone", (that, task) => {
