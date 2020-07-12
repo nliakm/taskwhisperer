@@ -5,7 +5,7 @@ Create task with new textboxes
 
 Delete Task
 
-![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskopen.png)
 ![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
 
 ## Overview
