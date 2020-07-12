@@ -1,4 +1,13 @@
-![Screenshot](https://github.com/cinatic/taskwhisperer/raw/master/images/menu.png)
+## New features
+Create task with new textboxes
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/createwithproject.png)
+
+Delete Task
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
+
+## Overview
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/menu.png)
 
 *gnome-shell-extension-taskwhisperer* is a simple extension for displaying pending tasks created by [TaskWarrior](https://taskwarrior.org/) in GNOME Shell.
 
@@ -29,13 +38,13 @@ If you like to use Taskwarrior on multiple devices and keep your tasks everywher
 ## Preview
 
 ### Task creation
-![Screenshot](https://github.com/cinatic/taskwhisperer/raw/master/images/create.png)
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/create.png)
 
 ### Task modification
-![Screenshot](https://github.com/cinatic/taskwhisperer/raw/master/images/modify.png)
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/modify.png)
 
 ### Settings
-![Screenshot](https://github.com/cinatic/taskwhisperer/raw/master/images/settings.png)
+![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/settings.png)
 
 ## Troubleshooting
 ### GLib.SpawnError: Failed to execute child process “task” (No such file or directory)
