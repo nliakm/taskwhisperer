@@ -1,8 +1,10 @@
 ## New features
 Create task with new textboxes
+
 ![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/createwithproject.png)
 
 Delete Task
+
 ![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
 ![Screenshot](https://github.com/nliakm/taskwhisperer/raw/master/images/deletetaskdone.png)
 
